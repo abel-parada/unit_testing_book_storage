@@ -138,31 +138,28 @@ const books = require('./books.json');
 
 // console.log(getPriceWithoutExtras(1));
 
-function getTotalPrice(id){
+function getPriceOfTheExtras(id){
     if(id){
-        let result;
         let sum=0;
 
         for (let book of books){
-            if(book.id === id){
+            if(book.id === id && book.extras.length>0){
                 for(let extra of book.extras){
-                    // console.log(book.extras[0])
                     sum = sum+extra.price;
-                    // result.push(extra.price);
                 }
-                // console.log(book.price)
-                result = sum + book.price;
             }
         }
-        if(result) return result;
+        if(sum || sum ===0) return sum;
         else throw new Error('nothing found with given id');
     }
     else {
         throw new Error('parameter missing');
     }
 
-}; // end of getTotalPrice
+}; // end of getPriceOfTheExtras
 
-console.log(getTotalPrice(1));
-console.log(getTotalPrice(2));
-console.log(getTotalPrice(3));
+console.log(getPriceOfTheExtras(1));
+console.log(getPriceOfTheExtras(2));
+console.log(getPriceOfTheExtras(3));
+console.log(getPriceOfTheExtras(10));
+console.log(getPriceOfTheExtras(5));

@@ -30,22 +30,18 @@ module.exports = class Bookstorage {
 
     getAllIdsByName(name){
 
-        if(!id) return false;
+        if(!name) return [];
 
-        if(id){
             const result = [];
     
             for(let book of this.bookStorage){
-                if(book.id == id && book.topics && !book.topics.length<1){
-                    result.push(book);  
+                if(book.name == name){
+                    result.push(book.id);  
                 }
             }
-            if(result.length>0) return true;
-            else return false;
-        }
-        else {
-            return false
-        }
+            if(result.length>0) return result;
+            else return [];
+      
 
     }; //end of getAllIdsByName
 
@@ -157,7 +153,23 @@ module.exports = class Bookstorage {
     }; // end of getTotalPrice
 
     getPriceOfTheExtras(id){
-
-    }; //end of getPriceOfTheExtras
+        if(id){
+            let sum=0;
+    
+            for (let book of this.bookStorage){
+                if(book.id === id && book.extras.length>0){
+                    for(let extra of book.extras){
+                        sum = sum+extra.price;
+                    }
+                }
+            }
+            if(sum || sum ===0) return sum;
+            else throw new Error('nothing found with given id');
+        }
+        else {
+            throw new Error('parameter missing');
+        }
+    
+    }; // end of getTotalPrice
 
 }
