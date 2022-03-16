@@ -119,21 +119,50 @@ const books = require('./books.json');
 
 ////////////////
 
-function getPriceWithoutExtras(id){
+// function getPriceWithoutExtras(id){
+//     if(id){
+//         const result = [];
+
+//         for (let book of books){
+//             if(book.id === id){
+//                 result.push(book.price);
+//             }
+//         }
+//         if(result) return result[0];
+//         else throw new Error('nothing found with given id');
+//     }
+//     else {
+//         throw new Error('parameter missing');
+//     }
+// }; //end of getPriceWithoutExtras
+
+// console.log(getPriceWithoutExtras(1));
+
+function getTotalPrice(id){
     if(id){
-        const result = [];
+        let result;
+        let sum=0;
 
         for (let book of books){
             if(book.id === id){
-                result.push(book.price);
+                for(let extra of book.extras){
+                    // console.log(book.extras[0])
+                    sum = sum+extra.price;
+                    // result.push(extra.price);
+                }
+                // console.log(book.price)
+                result = sum + book.price;
             }
         }
-        if(result) return result[0];
+        if(result) return result;
         else throw new Error('nothing found with given id');
     }
     else {
         throw new Error('parameter missing');
     }
-}; //end of getPriceWithoutExtras
 
-console.log(getPriceWithoutExtras(1));
+}; // end of getTotalPrice
+
+console.log(getTotalPrice(1));
+console.log(getTotalPrice(2));
+console.log(getTotalPrice(3));

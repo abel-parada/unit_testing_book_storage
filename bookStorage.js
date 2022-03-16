@@ -132,6 +132,27 @@ module.exports = class Bookstorage {
     }; //end of getPriceWithoutExtras
 
     getTotalPrice(id){
+        if(id){
+            let result;
+            let sum=0;
+    
+            for (let book of this.bookStorage){
+                if(book.id === id){
+                    for(let extra of book.extras){
+                        // console.log(book.extras[0])
+                        sum = sum+extra.price;
+                        // result.push(extra.price);
+                    }
+                    // console.log(book.price)
+                    result = sum + book.price;
+                }
+            }
+            if(result) return result;
+            else throw new Error('nothing found with given id');
+        }
+        else {
+            throw new Error('parameter missing');
+        }
 
     }; // end of getTotalPrice
 

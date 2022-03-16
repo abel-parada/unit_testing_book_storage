@@ -170,29 +170,57 @@ const books = require('../books.json');
 //     })
 // });
 
-describe('Testing method getPriceWithoutExtras', () => {
+// describe('Testing method getPriceWithoutExtras', () => {
+//     const storage = new Bookstorage(books);
+
+//     describe('Testing all the ids in storage',() => {
+        
+//             const testValues = [
+//                 //id,   expected
+//                 [1, 25],
+//                 [2, 45],
+//                 [3, 30]
+//             ];
+            
+//             test.each(testValues)('getPriceWithoutExtras(%s) returns %s',(id,expected) => {
+//                 expect(storage.getPriceWithoutExtras(id)).toEqual(expected);
+//             });
+        
+//     });
+
+//     test('Test 2: nothing found with given id', () => {
+//         expect(() => storage.getPriceWithoutExtras(10));
+//     });
+
+//     test('Test 3: no id given', () => {
+//         expect(() => storage.getPriceWithoutExtras());
+//     });
+// });
+
+describe('Testing method getTotalPrice', () => {
     const storage = new Bookstorage(books);
 
     describe('Testing all the ids in storage',() => {
         
             const testValues = [
                 //id,   expected
-                [1, 25],
-                [2, 45],
+                [1, 70],
+                [2, 190],
                 [3, 30]
             ];
             
-            test.each(testValues)('getPriceWithoutExtras(%s) returns %s',(id,expected) => {
-                expect(storage.getPriceWithoutExtras(id)).toEqual(expected);
+            test.each(testValues)('getTotalPrice(%s) returns %s',(id,expected) => {
+                expect(storage.getTotalPrice(id)).toEqual(expected);
             });
         
     });
 
     test('Test 2: nothing found with given id', () => {
-        expect(() => storage.getPriceWithoutExtras(10));
+        expect(() => storage.getTotalPrice(10));
     });
 
     test('Test 3: no id given', () => {
-        expect(() => storage.getPriceWithoutExtras());
+        expect(() => storage.getTotalPrice());
     });
-})
+});
+
