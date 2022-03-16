@@ -30,17 +30,22 @@ module.exports = class Bookstorage {
 
     getAllIdsByName(name){
 
-        if(!name) return [];
-        
-        const result = [];
+        if(!id) return false;
 
-        for(let book of this.bookStorage){
-            if(book.name === name){
-                result.push(book.id);
+        if(id){
+            const result = [];
+    
+            for(let book of this.bookStorage){
+                if(book.id == id && book.topics && !book.topics.length<1){
+                    result.push(book);  
+                }
             }
+            if(result.length>0) return true;
+            else return false;
         }
-
-        return result;
+        else {
+            return false
+        }
 
     }
 
@@ -59,15 +64,54 @@ module.exports = class Bookstorage {
     }
 
     getAllBooksByAuthor(author){
+        if(!author) throw new Error('missing parameter');
+        
+            const result = [];
 
+            for(let book of this.bookStorage){
+                if(book.author === author) {
+                    result.push(book);
+                }
+            }
+            return result;
     }
 
     hasTopics(id){
 
+        if(!id) return false;
+    
+        if(id){
+            const result = [];
+    
+            for(let book of this.bookStorage){
+                if(book.id === id && book.topics.length>1){
+                    result.push(book.id);  
+                }
+            }
+            console.log(result.length)
+            if(result.length === 0) return false;
+            else return true;
+        }
+        else {
+            return false
+        }
     }
 
-    getBookTopics(id){
 
+    getBookTopics(id){
+        if(id){
+            const result = [];
+            for(let book of this.bookStorage){
+                if(book.id === id && book.topics && book.topics.length>0){
+                    result.push(book.topics)
+                }
+            }
+            if(result.length === 0) return [];
+            else return result[0];
+        }
+        else {
+            throw new Error('parameter missing')
+        }
     }
 
     getPriceWithoutExtras(id){
