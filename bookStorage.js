@@ -47,7 +47,7 @@ module.exports = class Bookstorage {
             return false
         }
 
-    }
+    }; //end of getAllIdsByName
 
     getAllBookAuthors(){
         const result = [];
@@ -61,7 +61,7 @@ module.exports = class Bookstorage {
         }
         return result;
 
-    }
+    }; //end of getAllBookAuthors
 
     getAllBooksByAuthor(author){
         if(!author) throw new Error('missing parameter');
@@ -74,7 +74,7 @@ module.exports = class Bookstorage {
                 }
             }
             return result;
-    }
+    }; // end of getAllBooksByAuthor
 
     hasTopics(id){
 
@@ -95,7 +95,7 @@ module.exports = class Bookstorage {
         else {
             return false
         }
-    }
+    }; // end of hasTopics
 
 
     getBookTopics(id){
@@ -112,18 +112,31 @@ module.exports = class Bookstorage {
         else {
             throw new Error('parameter missing')
         }
-    }
+    }; // getBookTopics
 
     getPriceWithoutExtras(id){
-
-    }
+        if(id){
+            const result = [];
+    
+            for (let book of this.bookStorage){
+                if(book.id === id){
+                    result.push(book.price);
+                }
+            }
+            if(result) return result[0];
+            else throw new Error('nothing found with given id');
+        }
+        else {
+            throw new Error('parameter missing');
+        }
+    }; //end of getPriceWithoutExtras
 
     getTotalPrice(id){
 
-    }
+    }; // end of getTotalPrice
 
     getPriceOfTheExtras(id){
 
-    }
+    }; //end of getPriceOfTheExtras
 
 }

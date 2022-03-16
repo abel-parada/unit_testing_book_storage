@@ -70,28 +70,28 @@ const books = require('./books.json');
 
 // /////////////////
 
-function hasTopics(id){
+// function hasTopics(id){
 
-    if(!id) return false;
+//     if(!id) return false;
 
-    if(id){
-        const result = [];
+//     if(id){
+//         const result = [];
 
-        for(let book of books){
-            if(book.id === id && book.topics.length>1){
-                result.push(book.id);  
-            }
-        }
-        console.log(result.length)
-        if(result.length === 0) return false;
-        else return console.log(result);
-    }
-    else {
-        return false
-    }
-}
+//         for(let book of books){
+//             if(book.id === id && book.topics.length>1){
+//                 result.push(book.id);  
+//             }
+//         }
+//         console.log(result.length)
+//         if(result.length === 0) return false;
+//         else return console.log(result);
+//     }
+//     else {
+//         return false
+//     }
+// }
 
-console.log(hasTopics(1));
+// console.log(hasTopics(1));
 // console.log(hasTopics(3));
 // console.log(hasTopics());
 
@@ -116,3 +116,24 @@ console.log(hasTopics(1));
 
 // // console.log(getBookTopics(1));
 // console.log(getBookTopics(3));
+
+////////////////
+
+function getPriceWithoutExtras(id){
+    if(id){
+        const result = [];
+
+        for (let book of books){
+            if(book.id === id){
+                result.push(book.price);
+            }
+        }
+        if(result) return result[0];
+        else throw new Error('nothing found with given id');
+    }
+    else {
+        throw new Error('parameter missing');
+    }
+}; //end of getPriceWithoutExtras
+
+console.log(getPriceWithoutExtras(1));

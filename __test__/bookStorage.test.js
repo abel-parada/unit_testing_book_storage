@@ -146,26 +146,53 @@ const books = require('../books.json');
 //     });
 // });
 
-describe('Testing method getBookTopics', () => {
-    test('Test 1. Using custom data. Topics found' , () => {
-        const storage = new Bookstorage(books);
-        const expected = ["noSql", "sql", "future databases"];
+// describe('Testing method getBookTopics', () => {
+//     test('Test 1. Using custom data. Topics found' , () => {
+//         const storage = new Bookstorage(books);
+//         const expected = ["noSql", "sql", "future databases"];
 
-        expect(storage.getBookTopics(1)).toEqual(expected);
-    });
+//         expect(storage.getBookTopics(1)).toEqual(expected);
+//     });
     
-    test('Test 2. No topics found', () => {
-        const storage = new Bookstorage(books);
-        const expected = [];
+//     test('Test 2. No topics found', () => {
+//         const storage = new Bookstorage(books);
+//         const expected = [];
 
-        expect(storage.getBookTopics(3)).toEqual(expected);
+//         expect(storage.getBookTopics(3)).toEqual(expected);
 
-    })
+//     })
 
-    test('Test 3. Parameter missing', () => {
-        const storage = new Bookstorage(books);
+//     test('Test 3. Parameter missing', () => {
+//         const storage = new Bookstorage(books);
 
-        expect(() => storage.getBookTopics());
+//         expect(() => storage.getBookTopics());
 
-    })
-});
+//     })
+// });
+
+describe('Testing method getPriceWithoutExtras', () => {
+    const storage = new Bookstorage(books);
+
+    describe('Testing all the ids in storage',() => {
+        
+            const testValues = [
+                //id,   expected
+                [1, 25],
+                [2, 45],
+                [3, 30]
+            ];
+            
+            test.each(testValues)('getPriceWithoutExtras(%s) returns %s',(id,expected) => {
+                expect(storage.getPriceWithoutExtras(id)).toEqual(expected);
+            });
+        
+    });
+
+    test('Test 2: nothing found with given id', () => {
+        expect(() => storage.getPriceWithoutExtras(10));
+    });
+
+    test('Test 3: no id given', () => {
+        expect(() => storage.getPriceWithoutExtras());
+    });
+})
