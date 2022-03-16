@@ -1,8 +1,35 @@
-# unit_testing_book_storage
+# Unit testing book storage
 
-## Task: Create and test a BookStorage class
+This project tests a class (Datastorage()) that handles book data from a json file. Data is passed to the constructor as a parameter.
 
-Create a class for book data. Data storage is passed to the constractor as a parameter. Use the following json object as default storage
+## Technologies used
+
+Built with:
+
+- JS
+- Node
+- Jest
+
+## Setup and usage
+
+### Install the pertinent dependencies and node_modules: `npm install`
+
+### In root folder run: `npm test`
+
+## Sources
+
+- Business College Helsinki. Unit testing and quality assurance lessons.
+
+## Authors and acknowledgment
+
+Abel Parada
+
+- [GitHub @abel-parada](https://github.com/abel-parada)
+- [LinkedIn](https://www.linkedin.com/in/abelparadamillan/)
+
+---
+
+# Project specs
 
 ### **datastorage.json**
 
@@ -128,28 +155,3 @@ Returns the total price of extras bunled with the book
 - Parameters: id of the book to be searched
 - Return: the total price of extras. If no extras is found returns 0
 - if no book with the given number is found throws an exeption `nothing found with given id`
-
-## Create a folder for the testproject
-
-- the name of the folder should include your name
-- use **datastorage.json** as a data source
-- create **package.json**
-  - **`npm init -y`**
-- install **jest** as development dependency
-  - **`npm install jest --save-dev`**
-- create folder **tests** for tests
-- edit the test script in the **package.json**
-
-## Design test cases in separate .md -file
-
-## Implement all tests and test them to fail
-
-## Implement corresponding methods
-
-## Test the project until all tests pass
-
-## Submit the project folder
-
-Submit your project folder acording to instructions given separately.
-Remove the `node_modules` folder before submitting.
-The project folder should include `package.json` file
